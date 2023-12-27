@@ -24,7 +24,7 @@ const PlayersList = observer(({ PlayersStore }) => {
           </div>
         ))}
       </div>
-      {PlayersStore.players.length >= 2 && PlayersStore.players.length < 5 && (
+      {PlayersStore.players.length >= 2 && PlayersStore.players.length <= 5 && (
         <button onClick={() => PlayersStore.startGame()}>Start Game</button>
       )}
     </div>

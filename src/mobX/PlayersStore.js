@@ -2,12 +2,15 @@ import { makeObservable, observable, computed, action } from "mobx";
 
 export class PlayersStore {
   players = [];
+  gameStarted = false;
 
   constructor() {
     makeObservable(this, {
       players: observable,
+      gameStarted: observable,
       addPlayer: action,
       removePlayer: action,
+      startGame: action,
       playersCount: computed,
     });
   }
@@ -22,5 +25,9 @@ export class PlayersStore {
 
   get playersCount() {
     return this.players.length;
+  }
+
+  startGame() {
+    this.gameStarted = true;
   }
 }

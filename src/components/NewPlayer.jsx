@@ -18,6 +18,7 @@ export default observer(({ PlayersStore }) => {
     PlayersStore.addPlayer({
       id: PlayersStore.players.length + 1,
       name: name,
+      points: 0,
       bighead: { ...bighead }, 
     });
 
