@@ -1,8 +1,12 @@
+.container {
+  overflow-x: auto; /* Enable horizontal scrolling */
+  white-space: nowrap; /* Prevent items from wrapping */
+  max-width: 100%; /* Adjust the width as needed */
+  align-items: center;
+}
+
 .list {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  margin: 10px;
+  display: inline-flex; /* Display items in a row */
 }
 
 .player {
@@ -17,11 +21,11 @@
 }
 
 .subTitle {
-    font-size: 1.5em;
-    text-align: center;
-    color: #5c5a5a;
-    font-family: 'Roboto', sans-serif;
-    font-weight: 300;
-    margin: 20px;
-    padding: 0;
+  font-size: 1.5em;
+  text-align: center;
+  color: #5c5a5a;
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  margin: 20px;
+  padding: 0;
 }

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { BigHead } from "@bigheads/core";
 import { observer } from "mobx-react-lite";
 import { getRandomBighead } from "../../bighead";
@@ -7,6 +7,7 @@ import "../styles/NewPlayer.css";
 export default observer(({ PlayersStore }) => {
   const [bighead, setBighead] = useState(getRandomBighead());
   const [name, setName] = useState("");
+  const inputRef = useRef(null);
 
   const newBighead = () => {
     setBighead(getRandomBighead());
@@ -18,12 +19,20 @@ export default observer(({ PlayersStore }) => {
     PlayersStore.addPlayer({
       id: PlayersStore.players.length + 1,
       name: name,
-      points: 0,
-      bighead: { ...bighead }, 
+      score: 0,
+      lettersGuessed: [],
+      bighead: { ...bighead },
     });
 
     setName("");
-    newBighead(); 
+    newBighead();
+    inputRef.current.focus();
+  };
+
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      addPlayer();
+    }
   };
 
   return (
@@ -58,6 +67,7 @@ export default observer(({ PlayersStore }) => {
       )}
       {/* input name */}
       <input
+        ref={inputRef}
         placeholder="Name"
         className="input"
         type="text"
@@ -66,10 +76,14 @@ export default observer(({ PlayersStore }) => {
           e.preventDefault();
           setName(e.target.value);
         }}
+        onKeyPress={handleKeyPress}
       />
 
       <button onClick={newBighead}>New Bighead</button>
       <button onClick={addPlayer}>Save</button>
+      {PlayersStore.players.length >= 2 && PlayersStore.players.length <= 5 && (
+        <button onClick={() => PlayersStore.startGame()}>Start Game</button>
+      )}
     </div>
   );
 });

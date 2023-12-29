@@ -5,8 +5,7 @@ import "../styles/PlayersList.css";
 
 const PlayersList = observer(({ PlayersStore }) => {
   return (
-    <div style={{ display: "flex", flexDirection: "column" }}>
-      {(PlayersStore.players.length < 2 || PlayersStore.players.length > 5) && <p className="subTitle">Enter 2-5 players</p>}
+    <div className="container">
       <div className="list">
         {PlayersStore.players.map((player) => (
           <div key={player.id} className="player">
@@ -24,9 +23,6 @@ const PlayersList = observer(({ PlayersStore }) => {
           </div>
         ))}
       </div>
-      {PlayersStore.players.length >= 2 && PlayersStore.players.length <= 5 && (
-        <button onClick={() => PlayersStore.startGame()}>Start Game</button>
-      )}
     </div>
   );
 });
