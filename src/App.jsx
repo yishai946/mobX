@@ -5,11 +5,13 @@ import PlayersListGame from "./components/PlayersListGame";
 import Word from "./components/Word";
 import ResetButton from "./components/ResetButton";
 import { PlayersStore } from "./mobX/PlayersStore";
-import { useState } from "react";
+import { useMemo } from "react";
 import "./styles/App.css";
 
 const App = observer(() => {
-  const [playersStore, setPlayersStore] = useState(new PlayersStore());
+  // const [playersStore, setPlayersStore] = useState(new PlayersStore());
+  // const playersStore = new PlayersStore();
+  const playersStore = useMemo(() => new PlayersStore(), []);
 
   return !playersStore.gameStarted ? (
     <div style={{ display: "flex", flexDirection: "row" }}>
